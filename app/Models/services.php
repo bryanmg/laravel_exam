@@ -9,6 +9,12 @@ class services extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'status',
+        'user_id'
+    ];
+
     public function user(){
         return $this->hasOne('App\User');
     }
