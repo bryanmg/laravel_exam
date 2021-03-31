@@ -29,7 +29,7 @@ class HomeController extends Controller
     }
     
     private function redirectOnUser(){
-        if(Auth::user()->role_id == 2){ 
+        if(Auth::user()->role_id == 2){
             return '/services/home';
         }
         else if(Auth::user()->role_id == 1){ 

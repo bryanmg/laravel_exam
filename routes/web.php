@@ -21,5 +21,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
-Route::resource('/services', ServicesController::class);
+
+Route::group(['middleware' => 'is.user.active'], function () {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::resource('/services', ServicesController::class);
+});
