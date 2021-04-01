@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Roles;
 use Illuminate\Http\Request;
 use Session;
+use Illuminate\Support\Collection;
 
 class UsersController extends Controller
 {
@@ -89,5 +90,14 @@ class UsersController extends Controller
     {
         User::destroy($id);
         return view('/admin/home')->with('success', 'Deleted successfully.');
+    }
+
+    public function apiIndex(){
+        $users = User::with("services")->get();
+        $response = collect([
+            "status" => "OK",
+            "data" => ["users" => $users]
+        ]);
+        return response()->json($response);
     }
 }
